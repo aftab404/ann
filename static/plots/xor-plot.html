@@ -1,0 +1,67 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>XOR Plot</title>
+</head>
+<body>
+    <script src="../libs/d3.v7.js"></script>
+    <script>
+
+        const margin = {top: 20, right: 20, bottom: 20, left: 20};
+        const width = 350 - margin.left - margin.right;
+        const height = 350 - margin.top - margin.bottom;
+
+        let lineX1 = 0;
+        let lineY1 = height;
+        let lineX2 = width;
+        let lineY2 = 0;
+
+
+        const svg = d3.select('body')
+            .attr('style', 'text-align: center; padding-top: 50px')
+            .append('svg')
+            .attr('width', width + margin.left + margin.right)
+            .attr('height', height + margin.top + margin.bottom)
+            .append('g')
+            .attr('transform', `translate(${margin.left}, ${margin.top})`)
+
+
+        const xAxix = svg.append('line')
+            .attr('x1', 0)
+            .attr('y1', height)
+            .attr('x2', width )
+            .attr('y2', height)
+            .attr('stroke', 'white')
+            .attr('stroke-width', 4)
+
+        const yAxix = svg.append('line')
+            .attr('x1', 0)
+            .attr('y1', 0)
+            .attr('x2', 0)
+            .attr('y2', height )
+            .attr('stroke', 'white')
+            .attr('stroke-width', 4)
+
+        const data = [
+            {x: 0, y: 0, label: 0},
+            {x: 1, y: 0, label: 1},
+            {x: 0, y: 1, label: 1},
+            {x: 1, y: 1, label: 0}
+        ]
+
+        svg.selectAll('circle')
+            .data(data)
+            .enter()
+            .append('circle')
+            .attr('cx', d => width * d.x)
+            .attr('cy', d => (1 - d.y) * height)
+            .attr('r', 15)
+            .attr('fill', d => !d.label ? '#f64273' : '#9BE7FF')
+
+
+    </script>
+
+</body>
+</html>

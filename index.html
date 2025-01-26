@@ -8,16 +8,318 @@
 
 		<link rel="stylesheet" href="dist/reset.css">
 		<link rel="stylesheet" href="dist/reveal.css">
-		<link rel="stylesheet" href="dist/theme/black.css">
+		<link rel="stylesheet" href="dist/theme/dracula.css">
+		<link rel="stylesheet" href="https://unpkg.com/tldreveal/dist/bundle/index.css" />
+
 
 		<!-- Theme used for syntax highlighted code -->
-		<link rel="stylesheet" href="plugin/highlight/monokai.css">
+		<link rel="stylesheet" href="plugin/highlight/styles/atom-one-dark.css">
 	</head>
 	<body>
 		<div class="reveal">
 			<div class="slides">
-				<section>Slide 1</section>
-				<section>Slide 2</section>
+				<section>
+					<section>
+						<h2>Binary Classification</h2>
+						<p>Categorize data points in two classes.</p>
+					</section>
+					<section >
+						<h2>Linear Classifiers</h2>
+						<p>
+							\[y = m \cdot x + c\]
+						</p>
+						<div class="fig-container" data-file="./static/plots/linear-classification.html"></div>
+					</section>
+				</section>
+
+				<section>
+					<section>
+						<h1>XOR Problem</h1>
+					</section>
+					<section >
+						<h2 style="margin-bottom: 50px">XOR Binary Function</h2>
+						\[
+						f(x,y) =
+						\begin{cases}
+						1 & \text{if } x \neq y \\
+						0 & \text{otherwise}
+						\end{cases}
+						\]
+						<p>\[\text{for} \ x,y \in \{0,1\} \]</p>
+					</section>
+					<section>
+						<h2>XOR Classification</h2>
+						<p>But, can we classify the XOR using linear classifiers ?</p>
+						<div class="fig-container" data-file="./static/plots/xor-plot.html"></div>
+					</section>
+				</section>
+				<section>
+					<section>
+						<h2>Artificial Neural Networks</h2>
+					</section>
+					<section>
+						<h2>McCulloch-Pitts Neuron (1943)</h2>
+						<ul>
+							<li>Proposed in 1943.</li>
+							<li>A non-linear computational model.</li>
+							<li>Inspired from a biological neuron.</li>
+						</ul>
+						<p>
+							\[
+							y = \varphi(\sum_{i=1}^{n} w_i x_i)
+							\]
+						</p>
+					</section>
+					<section>
+						<h2>Biological Inspiration</h2>
+						<div style="display: flex; padding-top: 30px; width: 100%; justify-content: space-between">
+							<img style="height: 300px ;width: auto" src="static/images/Neuron.svg" alt="Biological Neuron">
+							<img style="height: 300px ;width: auto" src="static/images/ArtificialNeuron.svg" alt="Artificial Neuron">
+						</div>
+					</section>
+				</section>
+				<section>
+					<section>
+						<!-- <div style="font-size: large; color:lightslategrey; border: solid 1px grey; border-radius: 8px; position: fixed; top: 0; padding: 2px 4px;" >
+						1958
+						</div> -->
+						<h2>
+							Perceptron (1958)
+						</h2>
+						<ul>
+							<li>Introduced by Frank Rosenblatt .</li>
+							<li>Practical application of McCulloch-Pitts neurons.</li>
+						</ul>
+						<p>
+							\[
+							y = \varphi(\sum_{i=1}^{n} w_i x_i + b)
+							\]
+						</p>
+					</section>
+					<section data-auto-animate>
+						<h2>
+							Can it classify XOR?
+						</h2>
+						<!-- show that linear classifier and perceptron are mathematically the same -->
+
+					</section>
+					<section data-auto-animate>
+						<h2>
+							Can it classify XOR?
+						</h2>
+						<!-- show that linear classifier and perceptron are mathematically the same -->
+						<p>
+							\[
+							y = \varphi(\sum_{i=1}^{n} w_i x_i + b) \simeq (m \cdot x + c)
+							\]
+						</p>
+						<p>Still Linear !</p>
+
+					</section>
+					<section>
+						<h2>
+							AI Winter (1970-1980)
+						</h2>
+
+						<ul>
+							<li>Perceptron cant solve non-linearly separable problems</li>
+							<li>Lack of computational power</li>
+							<li>No funding for AI research</li>
+						</ul>
+
+					</section>
+
+				</section>
+				<section>
+					<section>
+						<h2>
+							Maybe add more layers?
+						</h2>
+					</section>
+					<section data-auto-animate>
+						<h2>
+							Multilayer Perceptron
+						</h2>
+						<ul>
+							<li>Stack multiple perceptrons together.</li>
+							<li>Introduces hidden layers.</li>
+							<li>Adds non-linearity using <span style="font-weight: bold; color: #2ad7dc">activation functions</span>.</li>
+							<li>Uses
+								<span style="font-weight: bold; color: #2ad7dc">backpropagation</span> for training.
+							</li>
+						</ul>
+					</section>
+					<section data-auto-animate>
+						<h2>
+							Multilayer Perceptron
+						</h2>
+						<div>
+							{image}
+						</div>
+					</section>
+				</section>
+				<section>
+					<section>
+						<h2>
+							Activation Function
+						</h2>
+						<ul>
+							<li>Adds non-linearity to the model.
+								<span class="fragment" style="color: #2ad7dc; font-weight: bold">but how ?</span>
+							</li>
+							<li>Eg. ReLU, Sigmoid, Tanh, etc.</li>
+						</ul>
+
+						\[
+						\Theta(x) =
+						\begin{cases}
+						1 & \text{if } x > 0 \\
+						0 & \text{otherwise}
+						\end{cases}
+						\]
+					</section>
+
+					<section  class="fig-container" style="overflow:hidden;"
+							  data-file="https://www.desmos.com/calculator/nvslk4wvlf"
+					>
+					</section>
+				</section>
+
+				<section>
+					<section>
+						<h2>
+							Backpropagation (1982)
+						</h2>
+						<ul>
+							<li>Introduced by Rumelhart, Hinton and Williams.</li>
+							<li>Optimizes the weights of the network.</li>
+							<li>Uses the chain rule of calculus.</li>
+						</ul>
+					</section>
+					<section>
+						<h2>
+							Derivative of a Function
+						</h2>
+						<p>Rate of change of a function at a point.</p>
+						\[
+						\frac{df(x)}{dx} = \lim_{h \to 0} \frac{f(x+h) - f(x)}{h}
+						\]
+
+					</section>
+					<section>
+						<h2>
+							Chain Rule
+						</h2>
+						<p>If bicycle rider is twice as fast as the person walking, and a car is twice as fast as the bicycle, then the car is four times as fast as the person walking.</p>
+
+						\[
+						\frac{\partial f(g(x))}{\partial x} = \frac{\partial f(g(x))}{\partial g(x)} \cdot \frac{\partial g(x)}{\partial x}
+						\]
+					</section>
+				</section>
+				<section>
+					<section>
+						<h2>Training Process</h2>
+					</section>
+					<section>
+						<h2>5-Steps Training</h2>
+						<ol>
+							<li>Initialize the weights randomly.</li>
+							<li>Forward pass to get the output.</li>
+							<li>Calculate the loss.</li>
+							<li>Backpropagate the gradients.</li>
+							<li>Update the weights.</li>
+						</ol>
+					</section>
+					<section>
+						<h2>Initialization</h2>
+						<p>Randomly initialize the weights of the network.</p>
+						\[
+						w = \text{random}
+						\]
+
+					</section>
+					<section>
+						<h2>Forward Pass</h2>
+						<p>Pass the input through the network to get the output.</p>
+						\[
+						y_{\text{pred}} = f(w \cdot x)
+						\]
+
+
+					</section>
+					<section>
+						<h2>Loss Calculation</h2>
+						<p>Calculate the difference between the predicted and actual output.</p>
+						\[
+						\text{Loss} = \frac{1}{n} \sum_{i=1}^{n} (y_{\text{pred}} - y_{\text{true}})^2
+						\]
+
+					</section>
+					<section>
+						<h2>Backpropagation</h2>
+						<p>Calculate the gradients of the loss with respect to the weights.</p>
+						\[
+						\frac{\partial \text{Loss}}{\partial w} = \frac{\partial \text{Loss}}{\partial y_{\text{pred}}} \cdot \frac{\partial y_{\text{pred}}}{\partial w}
+						\]
+
+					</section>
+					<section>
+						<h2>Update Parameters</h2>
+						<p>Update the weights using the gradients.</p>
+						\[
+						w_{\text{new}} = w_{\text{old}} - \alpha \cdot \frac{\partial \text{Loss}}{\partial w}
+						\]
+					</section>
+					<section>
+						<h2>In PyTorch</h2>
+						<pre>
+							<code data-trim data-noescape data-line-numbers="10-14" >
+								base_model = torch.nn.Sequential(
+						        torch.nn.Linear(num_facts, 128),
+						        torch.nn.ReLU(),
+						        torch.nn.Linear(128, num_actions)
+						    )
+
+								num_epochs = 200
+								for i in range(0, num_epochs):
+
+									training_model.train() // set model to training mode
+									y = training_model(inputs) // forward pass
+									loss = lossfn(y, expected_outputs) // calculate loss
+									loss.backward() // backpropagate
+									optimizer.step() // update weights
+
+							</code>
+						</pre>
+					</section>
+				</section>
+				<section>
+					<section>
+						<h2>
+							Can it now solve the XOR problem ?
+							<span class="fragment">
+							Yes!
+						</span>
+						</h2>
+					</section>
+					<section  class="fig-container" style="overflow:hidden;"
+						  data-file="https://playground.tensorflow.org/#activation=tanh&batchSize=10&dataset=spiral&regDataset=reg-plane&learningRate=0.03&regularizationRate=0&noise=0&networkShape=4,2&seed=0.92734&showTestData=false&discretize=false&percTrainData=50&x=true&y=true&xTimesY=false&xSquared=false&ySquared=false&cosX=false&sinX=false&cosY=false&sinY=false&collectStats=false&problem=classification&initZero=false&hideText=false&discretize_hide=true&regularization_hide=true&batchSize_hide=true&regularizationRate_hide=true&percTrainData_hide=true&noise_hide=true&problem_hide=true&showTestData_hide=true&activation_hide=true"
+					>
+					</section>
+				</section>
+				<section>Universal Approximation Theorem (1989)</section>
+				<section>
+					<h2>
+						Current Advancements
+					</h2>
+					<ul>
+						<li>Deep Learning</li>
+						<li>Convolutional Neural Networks</li>
+						<li>Recurrent Neural Networks</li>
+						<li>Generative Adversarial Networks</li>
+				</section>
+				<section>Outlook</section>
 			</div>
 		</div>
 
@@ -25,15 +327,23 @@
 		<script src="plugin/notes/notes.js"></script>
 		<script src="plugin/markdown/markdown.js"></script>
 		<script src="plugin/highlight/highlight.js"></script>
+		<script src="plugin/math/math.js"></script>
+		<script src="https://unpkg.com/tldreveal/dist/bundle/index.js"></script>
+		<script src="plugin/reveald3.js"></script>
+
+
 		<script>
 			// More info about initialization & config:
 			// - https://revealjs.com/initialization/
 			// - https://revealjs.com/config/
 			Reveal.initialize({
 				hash: true,
+				width: 1200,
+				slideNumber: 'c/t',
+
 
 				// Learn about plugins: https://revealjs.com/plugins/
-				plugins: [ RevealMarkdown, RevealHighlight, RevealNotes ]
+				plugins: [ RevealMarkdown, RevealHighlight, RevealNotes, RevealMath.KaTeX, Tldreveal.Tldreveal(), Reveald3 ]
 			});
 		</script>
 	</body>

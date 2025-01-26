@@ -110,6 +110,14 @@ section.has-dark-background, section.has-dark-background h1, section.has-dark-ba
   text-shadow: var(--r-heading1-text-shadow);
 }
 
+.reveal h2 {
+  margin-top: 20px;
+}
+
+.reveal li {
+  margin-bottom: 10px;
+}
+
 /*********************************************
  * OTHER
  *********************************************/

@@ -1,0 +1,115 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Linear Classification</title>
+</head>
+<body>
+<script src="../libs/d3.v7.js"></script>
+<script>
+
+    var _transitions = [
+        {
+            transitionForward: function() {
+                updateLine(configNew)
+            },
+            transitionBackward: function() {
+                updateLine(configOld)
+            }
+        }
+    ]
+
+    const margin = {top: 20, right: 20, bottom: 20, left: 20};
+    const width = 350 - margin.left - margin.right;
+    const height = 350 - margin.top - margin.bottom;
+
+    const svg = d3.select('body')
+        .attr('style', 'text-align: center; padding-top: 50px')
+        .append('svg')
+        .attr('width', width + margin.left + margin.right)
+        .attr('height', height + margin.top + margin.bottom)
+        .append('g')
+        .attr('transform', `translate(${margin.left}, ${margin.top})`)
+
+
+    const xAxix = svg.append('line')
+        .attr('x1', 0)
+        .attr('y1', height)
+        .attr('x2', width )
+        .attr('y2', height)
+        .attr('stroke', 'white')
+        .attr('stroke-width', 4)
+
+    const yAxix = svg.append('line')
+        .attr('x1', 0)
+        .attr('y1', 0)
+        .attr('x2', 0)
+        .attr('y2', height )
+        .attr('stroke', 'white')
+        .attr('stroke-width', 4)
+
+    // 2 blobs of data points
+
+    const data = [
+        {x: 0.1, y: 0.1, label: 0},
+        {x: 0.2, y: 0.15, label: 0},
+        {x: 0.1, y: 0.3, label: 0},
+
+        {x: 0.6, y: 0.8, label: 1},
+        {x: 0.9, y: 0.7, label: 1},
+        {x: 0.7, y: 0.9, label: 1},
+        {x: 0.85, y: 0.85, label: 1},
+    ]
+
+    svg.selectAll('circle')
+        .data(data)
+        .enter()
+        .append('circle')
+        .attr('cx', d => width * d.x)
+        .attr('cy', d => (1 - d.y) * height)
+        .attr('r', 15)
+        .attr('fill', d => !d.label ? '#f64273' : '#9BE7FF')
+
+    // Linear classifier random position
+
+    const configOld = {
+        x1: 10,
+        y1: 10,
+        x2: 50,
+        y2: height
+    }
+
+    const configNew = {
+        x1: 50,
+        y1: 0,
+        x2: width - 50,
+        y2: height + 50
+    }
+
+    const line = svg.append('line')
+        .attr('x1', 10)
+        .attr('y1', 10)
+        .attr('x2', 50)
+        .attr('y2', height)
+
+        .attr('stroke', 'white')
+        .attr('stroke-width', 4)
+        .attr('stroke-dasharray', '5, 5')
+
+    // animate the line
+
+    const updateLine = (config) => {
+        const {x1, y1, x2, y2} = config
+        line.transition()
+            .duration(1000)
+            .attr('x1', x1)
+            .attr('y1', y1)
+            .attr('x2', x2)
+            .attr('y2', y2)
+    }
+
+</script>
+
+</body>
+</html>
