@@ -19,6 +19,10 @@
 		<div class="reveal">
 			<div class="slides">
 				<section>
+					<h2>Artificial Neural Networks</h2>
+					<p>Aftab Khan<p>
+				</section>
+				<section>
 					<section>
 						<h2>Binary Classification</h2>
 						<p>Categorize data points in two classes.</p>
@@ -95,6 +99,12 @@
 							y = \varphi(\sum_{i=1}^{n} w_i x_i + b)
 							\]
 						</p>
+
+						<p >
+							\[
+							w_i = \text{weights} \quad x_i = \text{inputs} \quad b = \text{bias}
+							\]
+						</p>
 					</section>
 					<section data-auto-animate>
 						<h2>
@@ -113,7 +123,7 @@
 							y = \varphi(\sum_{i=1}^{n} w_i x_i + b) \simeq (m \cdot x + c)
 							\]
 						</p>
-						<p>Still Linear !</p>
+						<p style="color: hotpink; font-weight: bold">Still Linear !</p>
 
 					</section>
 					<section>
@@ -137,7 +147,7 @@
 						</h2>
 					</section>
 					<section data-auto-animate>
-						<h2 class="fragment">
+						<h2>
 							Multilayer Perceptron
 						</h2>
 						<div >
@@ -179,8 +189,9 @@
 						\]
 					</section>
 
-					<section  class="fig-container" style="overflow:hidden;"
+					<section  class="fig-container" data-style="overflow:hidden;"
 							  data-file="https://www.desmos.com/calculator/g7nf7mlpcj"
+
 					>
 					</section>
 				</section>
@@ -193,9 +204,13 @@
 						<ul>
 							<li>Introduced by Rumelhart, Hinton and Williams.</li>
 							<li>Optimizes the weights of the network.</li>
-							<li>Uses the derivatives and chain rule of calculus.</li>
+							<li>Uses the
+								<span style="color: #2ad7dc; font-weight: bold">derivatives</span> and
+								<span style="color: #2ad7dc; font-weight: bold">chain rule</span> of calculus.
+								</li>
 						</ul>
 					</section>
+
 					<!--
 					<section>
 
@@ -212,7 +227,7 @@
 						<h2>
 							Derivative of a Function
 						</h2>
-						<p>Rate of change of a function at a point.</p>
+						<p>It tells us how small changes in the input affect the output.</p>
 						\[
 						\frac{df(x)}{dx} = \lim_{h \to 0} \frac{f(x+h) - f(x)}{h}
 						\]
@@ -225,7 +240,7 @@
 						<p>If bicycle rider is twice as fast as the person walking, and a car is twice as fast as the bicycle, then the car is four times as fast as the person walking.</p>
 
 						\[
-						\frac{\partial car}{\partial person} = \frac{\partial car}{\partial bicycle} \cdot \frac{\partial bicycle}{\partial person}
+						\frac{\partial \text{car}}{\partial \text{person}} = \frac{\partial \text{car}}{\partial \text{bicycle}} \cdot \frac{\partial \text{bicycle}}{\partial \text{person}}
 						\]
 					</section>
 					<section data-auto-animate>
@@ -256,16 +271,23 @@
 					<section>
 						<h2>Initialization</h2>
 						<p>Randomly initialize the weights of the network.</p>
-						\[
-						w = \text{random}
-						\]
-
+						<p style="font-size: larger">
+							\[
+							w = \text{random}
+							\]
+						</p>
 					</section>
 					<section>
 						<h2>Forward Pass</h2>
 						<p>Pass the input through the network to get the output.</p>
+						<p style="font-size: larger">
+							\[
+							y_{\text{pred}} = f(w \cdot x)
+							\]
+						</p>
+
 						\[
-						y_{\text{pred}} = f(w \cdot x)
+						f = \text{activation function}
 						\]
 
 
@@ -274,8 +296,10 @@
 						<h2>Loss Calculation</h2>
 						<p>Calculate the difference between the predicted and actual output.</p>
 						\[
-						\text{Loss} = \frac{1}{n} \sum_{i=1}^{n} (y_{\text{pred}} - y_{\text{true}})^2
+						\text{Loss} = \frac{1}{n} \sum_{i=1}^{n} (y_{\text{pred}_i} - y_{\text{true}_i})^2
 						\]
+
+						\[ \ n = \text{number of samples} \]
 
 					</section>
 					<section>
@@ -291,6 +315,10 @@
 						<p>Update the weights using the gradients.</p>
 						\[
 						w_{\text{new}} = w_{\text{old}} - \alpha \cdot \frac{\partial \text{Loss}}{\partial w}
+						\]
+
+						\[
+						\alpha = \text{learning rate}
 						\]
 					</section>
 					<section>
@@ -320,14 +348,15 @@
 					<section>
 						<h2>
 							Can it now solve the XOR problem ?
-							<span class="fragment">
+							<span style="color: #2ad7dc; font-weight: bold" class="fragment">
 							Yes!
 						</span>
 						</h2>
 					</section>
-					<section  class="fig-container" style="overflow:hidden;"
-						  data-file="https://playground.tensorflow.org/#activation=tanh&batchSize=10&dataset=spiral&regDataset=reg-plane&learningRate=0.03&regularizationRate=0&noise=0&networkShape=4,2&seed=0.92734&showTestData=false&discretize=false&percTrainData=50&x=true&y=true&xTimesY=false&xSquared=false&ySquared=false&cosX=false&sinX=false&cosY=false&sinY=false&collectStats=false&problem=classification&initZero=false&hideText=false&discretize_hide=true&regularization_hide=true&batchSize_hide=true&regularizationRate_hide=true&percTrainData_hide=true&noise_hide=true&problem_hide=true&showTestData_hide=true&activation_hide=true"
-					>
+					<section>
+						<div class="fig-container" style="margin-top: -220px; overflow-y : hidden" data-scroll="no"
+							 data-file="https://playground.tensorflow.org/#activation=tanh&batchSize=10&dataset=spiral&regDataset=reg-plane&learningRate=0.03&regularizationRate=0&noise=0&networkShape=4,2&seed=0.92734&showTestData=false&discretize=false&percTrainData=50&x=true&y=true&xTimesY=false&xSquared=false&ySquared=false&cosX=false&sinX=false&cosY=false&sinY=false&collectStats=false&problem=classification&initZero=false&hideText=false&discretize_hide=true&regularization_hide=true&batchSize_hide=true&regularizationRate_hide=true&percTrainData_hide=true&noise_hide=true&problem_hide=true&showTestData_hide=true&activation_hide=true"
+						></div>
 					</section>
 				</section>
 				<section>
@@ -349,7 +378,41 @@
 						<li>Generative Adversarial Networks</li>
 					</ul>
 				</section>
-				<section>Outlook</section>
+				<section>
+					<h2> Nature-Inspired ? </h2>
+					<table class="fragment">
+						<tr>
+							<th>Humans</th>
+							<th>Machines</th>
+						</tr>
+						<tr>
+							<td class="fragment">Some perception about a thing</td>
+							<td class="fragment">Random weights</td>
+						</tr>
+						<tr>
+							<td class="fragment">Trying it</td>
+							<td class="fragment">Forward pass</td>
+						</tr>
+						<tr>
+							<td class="fragment">Realising mistakes</td>
+							<td class="fragment">Backpropagation</td>
+						</tr>
+						<tr>
+							<td class="fragment">Changing the perception</td>
+							<td class="fragment">Update weights</td>
+						</tr>
+						<tr>
+							<td class="fragment">Can never be perfect</td>
+							<td class="fragment">?</td>
+						</tr>
+
+					</table>
+				</section>
+				<section>
+					<h2>
+						Thank You!
+					</h2>
+				</section>
 			</div>
 		</div>
 
